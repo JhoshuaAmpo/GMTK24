@@ -13,7 +13,7 @@ public class ScreenWrap : MonoBehaviour
     private float xMax = 0;
     private float xMin = 0;
     private float yMin = 0;
-    private float yMax = 0;
+    private float yMax = 1;
 
     private void Awake() {
         bc = GetComponent<BoxCollider2D>();
@@ -25,7 +25,7 @@ public class ScreenWrap : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        Debug.Log(other.name +  " has left the border");
+        // Debug.Log(other.name +  " has left the border");
         Vector3 objPos = other.transform.position;
         Vector2 newPos = objPos;
         if (objPos.x > xMax) {
@@ -40,7 +40,7 @@ public class ScreenWrap : MonoBehaviour
         if (objPos.y < yMin) {
             newPos.y = yMax - innerOffset;
         }
-        Debug.Log("Tp object to: " + newPos);
+        // Debug.Log("Tp object to: " + newPos);
         other.transform.position = newPos;
     }
 }
