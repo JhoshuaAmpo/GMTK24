@@ -52,4 +52,11 @@ public class PlayerMovement : MonoBehaviour
         int dir = (int)pc.Movement.Rotate.ReadValue<float>();
         rb.AddTorque(-dir * rotTorque,ForceMode2D.Force);
     }
+
+    private void UpdateTraitValues() {
+        // get broadcasted a message from below to use this funciton
+        // get each movement traits
+        // find their multipliers and adjust the values here
+        // if there are no movement traits set them to 0 or null equivalent
+    }
 }

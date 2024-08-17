@@ -4,7 +4,10 @@ using UnityEngine;
 
 public abstract class AttackTrait : Trait
 {
-    protected float damageVal;
+    [SerializeField]
     protected float sizeMult;
+    [SerializeField]
+    protected float damageVal;
+    [SerializeField]
     protected float abilityCooldown;
 }
