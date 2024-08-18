@@ -30,19 +30,22 @@ public class EnemyHealth : MonoBehaviour
             foodChild = foodInChild.gameObject;
         }
 
+        curHP = maxHP;
         foodChild.SetActive(false);
     }
 
     public void TakeDamage(float dmg) {
         curHP -= dmg;
+        Debug.Log(name + " HP: " + curHP);
         if (curHP <= 0) {
             ProcessDeath();
         }
     }
 
     private void ProcessDeath() {
-        Debug.Log(name + " has died!");
         // Spawn food
         // hide this actor
+        foodToSpawn.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

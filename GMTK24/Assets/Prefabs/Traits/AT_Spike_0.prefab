@@ -50,7 +50,7 @@ MonoBehaviour:
   tTier: 1
   tName: 3
   sizeMult: 1
-  damageVal: 0
+  damageVal: 20
   abilityCooldown: 0
 --- !u!212 &1027374162516367153
 SpriteRenderer:
