@@ -14,4 +14,9 @@ public abstract class MovementTrait : Trait
     public float GetMoveForceMult;
     public float GetTurnRotationMult;
     public float GetDragMult;
+
+    protected override void Awake() {
+        base.Awake();
+        tType = Trait.TraitType.movement;
+    }
 }

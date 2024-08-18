@@ -15,22 +15,25 @@ public abstract class EatTrait : Trait
     Collider2D eatCollider;
     float mouthSize;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+        tType = Trait.TraitType.eat;
         eatCollider = GetComponent<Collider2D>();
     }
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         mouthSize = mouthScale.x * mouthScale.y;
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.CompareTag("food")) { return; }
+        if (!other.CompareTag("Food")) { return; }
         float otherApproxAreaSize = other.transform.lossyScale.x * other.transform.lossyScale.y;
         if(otherApproxAreaSize > mouthSize) {
             Vector3 oLS = other.transform.localScale;
             other.transform.localScale = new(oLS.x - nomRate * Time.fixedDeltaTime, oLS.y - nomRate * Time.fixedDeltaTime);
         } else { 
-            // Consume(/* other food amount */);
+            Consume(other.GetComponent<Food>().ConsumeFood());
         }
     }
 

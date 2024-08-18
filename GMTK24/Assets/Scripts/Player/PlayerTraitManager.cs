@@ -5,19 +5,42 @@ using UnityEngine;
 public class PlayerTraitManager : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> allTraitObjects = new();
+    List<GameObject> allTraitObjects;
 
-    List<Trait> traits = new();
-    List<AttackTrait> attackTraits= new();
-    List<MovementTrait> movementTraits= new();
-    List<EatTrait> eatTraits= new();
+    PlayerTraitSlots[] traitSlots;
+    List<Trait> activeTraits;
+    List<AttackTrait> attackTraits;
+    List<MovementTrait> movementTraits;
+    List<EatTrait> eatTraits;
 
     private int traitPoints;
     // Start is called before the first frame update
     void Awake()
     {
-        GetComponentsInChildren<Trait>(traits);
-        foreach (Trait t in traits)
+        activeTraits = new();
+        attackTraits= new();
+        movementTraits= new();
+        eatTraits= new();
+
+        traitSlots = GetComponentsInChildren<PlayerTraitSlots>();
+        foreach (PlayerTraitSlots ts in traitSlots)
+        {
+            foreach (GameObject t in allTraitObjects)
+            {
+                ts.SpawnTrait(t);
+            }
+        }
+
+        foreach (PlayerTraitSlots ts in traitSlots)
+        {
+            Trait trait = ts.GetCurrentTrait();
+            if(trait != null) {
+                activeTraits.Add(trait);
+                ts.EnableCurrentTrait();
+            }         
+        }
+
+        foreach (Trait t in activeTraits)
         {
             if (t is AttackTrait) {
                 attackTraits.Add(t as AttackTrait);
@@ -29,6 +52,9 @@ public class PlayerTraitManager : MonoBehaviour
                 eatTraits.Add(t as EatTrait);
             }
         }
+    }
+
+    void Start() { 
     }
 
     // Update is called once per frame
