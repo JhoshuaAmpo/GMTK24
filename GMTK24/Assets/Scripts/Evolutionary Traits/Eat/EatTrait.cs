@@ -8,12 +8,10 @@ public abstract class EatTrait : Trait
     [SerializeField]
     protected float pickUpSize;
     [SerializeField]
-    protected Vector2 mouthScale;
-    [SerializeField]
     protected float nomRate;
 
     Collider2D eatCollider;
-    float mouthSize;
+    protected float mouthSize;
 
     protected override void Awake() {
         base.Awake();
@@ -23,11 +21,14 @@ public abstract class EatTrait : Trait
 
     protected override void Start() {
         base.Start();
-        mouthSize = mouthScale.x * mouthScale.y;
+        if (mouthSize == 0f) {
+            Debug.LogWarning("Mouth Size set to 0");
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (!other.CompareTag("Food")) { return; }
+        Debug.Log("Nomming on some food!");
         float otherApproxAreaSize = other.transform.lossyScale.x * other.transform.lossyScale.y;
         if(otherApproxAreaSize > mouthSize) {
             Vector3 oLS = other.transform.localScale;

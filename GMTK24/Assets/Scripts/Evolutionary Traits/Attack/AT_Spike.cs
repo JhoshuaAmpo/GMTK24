@@ -28,10 +28,4 @@ public class AT_Spike : AttackTrait
     {
         Debug.Log("Spike attack activated!");
     }
-
-    protected override void InitalizeTraitCode()
-    {
-        tTier = TraitTier.one;
-        tName = TraitName.spike;
-    }
 }

@@ -13,7 +13,6 @@ public abstract class Trait : MonoBehaviour
     public TraitName tName = TraitName.none;
 
     protected virtual void Awake() { 
-        InitalizeTraitCode();
         CheckTraitCodeForNone();
     }
     protected virtual void Start() { }
@@ -41,6 +40,4 @@ public abstract class Trait : MonoBehaviour
             Debug.LogError(name + ": TraitName set to none");
         }
     }
-
-    protected abstract void InitalizeTraitCode();
 }

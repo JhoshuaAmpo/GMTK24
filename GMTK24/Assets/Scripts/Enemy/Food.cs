@@ -5,11 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Food : MonoBehaviour
 {
-    [Range(0,100)]
-    public int traitPoints = 0;
-
+    private int traitPoints = 1;
     public int ConsumeFood() {
-        // Destroy this and enemy
+        Debug.Log("Food has been consumed");
+        gameObject.SetActive(false);
         return traitPoints;
+    }
+
+    public void SetTraitPoints(int val) {
+        traitPoints = val;
     }
 }
