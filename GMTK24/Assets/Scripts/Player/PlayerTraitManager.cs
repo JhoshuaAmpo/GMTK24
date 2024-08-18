@@ -7,20 +7,21 @@ public class PlayerTraitManager : MonoBehaviour
     [SerializeField]
     List<GameObject> allTraitObjects;
 
-    PlayerTraitSlots[] traitSlots;
-    List<Trait> activeTraits;
-    List<AttackTrait> attackTraits;
-    List<MovementTrait> movementTraits;
-    List<EatTrait> eatTraits;
+    public int TraitPoints {get; private set;}
 
-    private int traitPoints;
+    PlayerTraitSlots[] traitSlots;
+    public List<Trait> ActiveTraits {get; private set;}
+    public List<AttackTrait> AttackTraits {get; private set;}
+    public List<MovementTrait> MovementTraits {get; private set;}
+    public List<EatTrait> EatTraits {get; private set;}
+    
     // Start is called before the first frame update
     void Awake()
     {
-        activeTraits = new();
-        attackTraits= new();
-        movementTraits= new();
-        eatTraits= new();
+        ActiveTraits = new();
+        AttackTraits= new();
+        MovementTraits= new();
+        EatTraits= new();
 
         traitSlots = GetComponentsInChildren<PlayerTraitSlots>();
         foreach (PlayerTraitSlots ts in traitSlots)
@@ -35,21 +36,21 @@ public class PlayerTraitManager : MonoBehaviour
         {
             Trait trait = ts.GetCurrentTrait();
             if(trait != null) {
-                activeTraits.Add(trait);
+                ActiveTraits.Add(trait);
                 ts.EnableCurrentTrait();
             }         
         }
 
-        foreach (Trait t in activeTraits)
+        foreach (Trait t in ActiveTraits)
         {
             if (t is AttackTrait) {
-                attackTraits.Add(t as AttackTrait);
+                AttackTraits.Add(t as AttackTrait);
             }
             if (t is MovementTrait) {
-                movementTraits.Add(t as MovementTrait);
+                MovementTraits.Add(t as MovementTrait);
             }
             if (t is EatTrait) {
-                eatTraits.Add(t as EatTrait);
+                EatTraits.Add(t as EatTrait);
             }
         }
     }
@@ -64,6 +65,6 @@ public class PlayerTraitManager : MonoBehaviour
     }
 
     public void GainTraitPoints(int tp) {
-        traitPoints += tp;
+        TraitPoints += tp;
     }
 }
