@@ -11,9 +11,7 @@ public abstract class MovementTrait : Trait
     [SerializeField]
     protected float dragMult;
 
-    public float GetMoveForceMult { get; private set; }
-    public float GetTurnRotationMult { get; private set; }
-    public float GetDragMult { get; private set; }
+    
 
     private PlayerMovement playerMovement;
 
@@ -21,9 +19,15 @@ public abstract class MovementTrait : Trait
         base.Awake();
         tType = Trait.TraitType.movement;
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
 
-        GetMoveForceMult = moveForceMult;
-        GetTurnRotationMult = turnRotationMult;
-        GetDragMult = dragMult;
+    public float GetMoveForceMult() { 
+        return moveForceMult;
+    }
+    public float GetTurnRotationMult() { 
+        return turnRotationMult;
+    }
+    public float GetDragMult() { 
+        return dragMult;
     }
 }

@@ -345,7 +345,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 21
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -462,7 +462,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.7385871, b: 0, a: 1}
   m_FlipX: 0
@@ -523,9 +523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a66f697d1d3d614aa3bbfc0ac34bd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardForce: 10
-  backwardForce: 5
-  rotTorque: 10
+  baseForwardForce: 5
+  baseBackwardForce: 5
+  baseRotTorque: 3
+  baseDrag: 1
 --- !u!50 &584313864
 Rigidbody2D:
   serializedVersion: 4
@@ -540,7 +541,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 5
+  m_AngularDrag: 15
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -599,7 +600,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 3947015921396051319, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
+      objectReference: {fileID: 6608591458263366766, guid: ec153b6b8e442ff4f9fc0dee0701db6a, type: 3}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (3)
@@ -708,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1ceffc9d24bfa48a9087b7e645bba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundsDimension: {x: 1000, y: 800}
+  boundsDimension: {x: 2000, y: 1600}
   innerOffset: 10
 --- !u!61 &683442843
 BoxCollider2D:
@@ -1040,6 +1041,7 @@ MonoBehaviour:
   spawnCooldown: 1
   spawnOuterRadius: 30
   spawnInnerRadius: 75
+  border: {fileID: 683442842}
 --- !u!1001 &871020035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1291,7 +1293,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 21
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1448,7 +1450,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1717,9 +1719,9 @@ Transform:
   - {fileID: 1482387579}
   - {fileID: 422518601}
   - {fileID: 1753321611}
-  - {fileID: 588965839}
   - {fileID: 871020036}
   - {fileID: 1760765328}
+  - {fileID: 588965839}
   m_Father: {fileID: 584313861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1859192599
@@ -1737,6 +1739,7 @@ MonoBehaviour:
   allTraitObjects:
   - {fileID: 3947015921396051319, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
   - {fileID: 908770791201335318, guid: 50afaee37a766f1408e0afa0589100ef, type: 3}
+  - {fileID: 6608591458263366766, guid: ec153b6b8e442ff4f9fc0dee0701db6a, type: 3}
 --- !u!1 &2049215117
 GameObject:
   m_ObjectHideFlags: 0

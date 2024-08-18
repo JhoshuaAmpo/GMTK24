@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private float baseBackwardForce;
     [SerializeField]
     private float baseRotTorque;
+    [SerializeField]
+    private float baseDrag;
     
     private float finalForwardForce;
     private float finalBackwardForce;
@@ -25,24 +27,22 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Calculating Movement Traits")]
     PlayerTraitManager ptm;
-    float avgMoveForceMult = 1;
-    float avgTurnRotationMult = 1;
-    float avgDragMult = 1;
+    float combinedMoveForceMult = 1;
+    float combinedTurnRotationMult = 1;
+    float combinedDragMult = 1;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         pc = new();
         ptm = GetComponentInChildren<PlayerTraitManager>();
-
-        
-    }
-
-    private void Start() {
-        UpdateTraitValues();
     }
 
     private void OnEnable() {
         pc.Movement.Enable();
+    }
+    private void Start() {
+        rb.drag = baseDrag;
+        UpdateTraitValues();
     }
 
     private void OnDisable() {
@@ -74,26 +74,34 @@ public class PlayerMovement : MonoBehaviour
 
     // Call this funciton after swapping traits
     public void UpdateTraitValues() {
-        // Current way of getting multipliers: average it all out then multiply to base
         if (ptm.MovementTraits.Count == 0) {
-            avgMoveForceMult = 0;
-            avgTurnRotationMult = 0;
-            avgDragMult = 1;
+            combinedMoveForceMult = 0;
+            combinedTurnRotationMult = 0;
+            combinedDragMult = 1;
         } else {
+            // Way 1 Average out mult
+            // foreach (MovementTrait mT in ptm.MovementTraits)
+            // {
+            //     combinedMoveForceMult += mT.GetMoveForceMult();
+            //     combinedTurnRotationMult += mT.GetTurnRotationMult();
+            //     combinedDragMult += mT.GetDragMult();
+            // }
+            // // combinedMoveForceMult /= (float)ptm.MovementTraits.Count + 1;
+            // // combinedTurnRotationMult /= (float)ptm.MovementTraits.Count + 1;
+            // // combinedDragMult /= (float)ptm.MovementTraits.Count + 1;
+
+            // Way 2 Mult all the mults
             foreach (MovementTrait mT in ptm.MovementTraits)
             {
-                avgMoveForceMult += mT.GetMoveForceMult;
-                avgTurnRotationMult += mT.GetTurnRotationMult;
-                avgDragMult += mT.GetDragMult;
+                combinedMoveForceMult *= mT.GetMoveForceMult();
+                combinedTurnRotationMult *= mT.GetTurnRotationMult();
+                combinedDragMult *= mT.GetDragMult();
             }
-            avgMoveForceMult /= (float)ptm.MovementTraits.Count + 1;
-            avgTurnRotationMult /= (float)ptm.MovementTraits.Count + 1;
-            avgDragMult /= (float)ptm.MovementTraits.Count + 1;
         }
-        finalForwardForce = baseForwardForce * avgMoveForceMult;
-        finalBackwardForce = baseBackwardForce * avgMoveForceMult;
-        finalRotTorque = baseRotTorque * avgTurnRotationMult;
-        finalLinearDrag = rb.drag * avgDragMult;
+        finalForwardForce = baseForwardForce * combinedMoveForceMult;
+        finalBackwardForce = baseBackwardForce * combinedMoveForceMult;
+        finalRotTorque = baseRotTorque * combinedTurnRotationMult;
+        finalLinearDrag = rb.drag * combinedDragMult;
 
         rb.drag = finalLinearDrag;
     }

@@ -26,6 +26,7 @@ public class ScreenWrap : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         // Debug.Log(other.name +  " has left the border");
+        if (!(other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Food"))) { return; }
         Vector3 objPos = other.transform.position;
         Vector2 newPos = objPos;
         if (objPos.x > XMax) {
