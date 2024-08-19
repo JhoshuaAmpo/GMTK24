@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerTraitSlots : MonoBehaviour
 {
     [SerializeField]
-    GameObject currentTraitObject;
+    private GameObject currentTraitObject;
     List<GameObject> allTraits;
 
     private void Awake() {
@@ -23,6 +23,7 @@ public class PlayerTraitSlots : MonoBehaviour
     }
 
     public void SwapTrait(GameObject NewTrait) {
+        
         GameObject foundObj = FindTraitInList(NewTrait);
         if (foundObj == null) {
             Debug.LogError(NewTrait.name + " is not in the list of allTraits");
@@ -30,9 +31,11 @@ public class PlayerTraitSlots : MonoBehaviour
             currentTraitObject.SetActive(false);
             currentTraitObject = foundObj;
             currentTraitObject.SetActive(true);
+            Debug.Log("SuccesfullySwapped!");
         }
     }
     public void EnableCurrentTrait() {
+        
         GameObject foundObj = FindTraitInList(currentTraitObject);
         if (foundObj == null) { 
             Debug.LogError(name + " tried to enable an unknown trait: " + currentTraitObject.GetComponent<Trait>());

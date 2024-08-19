@@ -67,4 +67,8 @@ public class PlayerTraitManager : MonoBehaviour
     public void GainTraitPoints(int tp) {
         TraitPoints += tp;
     }
+
+    public void SwapTrait(int traitSlotIndex, GameObject trait) {
+        traitSlots[traitSlotIndex].SwapTrait(trait);
+    }
 }
