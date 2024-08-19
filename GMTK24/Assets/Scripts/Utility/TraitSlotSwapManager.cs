@@ -11,6 +11,8 @@ public class TraitSlotSwapManager : MonoBehaviour
     private List<Button> slotButtons;
     [SerializeField]
     private Button cancelButton;
+    [SerializeField]
+    private Button confirmButton;
 
     [SerializeField]
     private List<Button> traitButtons;
@@ -19,8 +21,6 @@ public class TraitSlotSwapManager : MonoBehaviour
 
     private Button currentSlotButton;
     
-    
-
     private void Awake() {
         if (Instance == null) { Instance = this; } 
         else { 
@@ -47,20 +47,22 @@ public class TraitSlotSwapManager : MonoBehaviour
     }
 
     private void SwapTrait(Button b) {
+        MakeAllTraitsInteractable();
+        b.interactable = false;
         GameObject traitGO = b.GetComponentInChildren<Trait>().gameObject;
         int traitSlotIndex = slotButtons.IndexOf(currentSlotButton); 
         if (traitSlotIndex == -1) {
             Debug.LogWarning("Can't find " + currentSlotButton + " in slotButtons");
             return;
         }
-        playerTraitManager.SwapTrait(traitSlotIndex, traitGO);    
+        playerTraitManager.SwapTrait(traitSlotIndex, traitGO);
+
+        // currentSlotButton.image.sprite = b.transform.Find("Trait Image").GetComponent<Image>().sprite;
     }
 
-    // public int GetIndexToButton(GameObject g){
-    //     int a = slotButtons.IndexOf(g);
-    //     if (a == -1) {
-    //         Debug.Log(g.name + " is not in the list");
-    //     }
-    //     return a;
-    // }
+    private void MakeAllTraitsInteractable() {
+        foreach (var trait in traitButtons) {
+            trait.interactable = true;
+        }
+    }
 }

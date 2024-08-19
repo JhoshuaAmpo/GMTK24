@@ -5,16 +5,11 @@ using UnityEngine;
 
 public class PlayerTraitSlots : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject currentTraitObject;
+    public GameObject currentTraitObject;
     List<GameObject> allTraits;
 
     private void Awake() {
         allTraits = new();
-    }
-
-    private void Start() {
-
     }
 
     public Trait GetCurrentTrait() {
@@ -23,15 +18,16 @@ public class PlayerTraitSlots : MonoBehaviour
     }
 
     public void SwapTrait(GameObject NewTrait) {
-        
         GameObject foundObj = FindTraitInList(NewTrait);
         if (foundObj == null) {
             Debug.LogError(NewTrait.name + " is not in the list of allTraits");
         } else {
-            currentTraitObject.SetActive(false);
+            if (currentTraitObject) {
+                currentTraitObject.SetActive(false);
+            }
+            FindTraitInList(currentTraitObject).SetActive(false);
+            foundObj.SetActive(true);
             currentTraitObject = foundObj;
-            currentTraitObject.SetActive(true);
-            Debug.Log("SuccesfullySwapped!");
         }
     }
     public void EnableCurrentTrait() {
