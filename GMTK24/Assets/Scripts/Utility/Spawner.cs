@@ -16,6 +16,9 @@ public class Spawner : MonoBehaviour
     private float spawnInnerRadius;
 
     [SerializeField]
+    private int initialAmountSpawn = 0;
+
+    [SerializeField]
     private ScreenWrap border;
 
     private float timer = 0;
@@ -26,6 +29,13 @@ public class Spawner : MonoBehaviour
         objectPooler = GetComponent<ObjectPooler>();
         List<Transform> tempList = new();
         playerTransform = GameObject.FindWithTag("Player").transform;
+    }
+
+    private void Start() {
+        for (int i = 0; i < initialAmountSpawn; i++)
+        {
+            SpawnObject();
+        }
     }
 
     void Update()

@@ -7,6 +7,12 @@ public class Food : MonoBehaviour
 {
     [SerializeField]
     private int traitPoints = 1;
+
+    private void OnEnable() {
+        if (transform.localScale.x > 100f) {
+            transform.localScale = new Vector3(100f, 100f, 100f);
+        }
+    }
     public int ConsumeFood() {
         // Debug.Log("Food has been consumed");
         gameObject.SetActive(false);
@@ -14,6 +20,10 @@ public class Food : MonoBehaviour
     }
 
     public void SetTraitPoints(int val) {
-        traitPoints = val;
+        if (val <= 0) {
+            traitPoints = 1;
+        } else {
+            traitPoints = val;
+        }
     }
 }

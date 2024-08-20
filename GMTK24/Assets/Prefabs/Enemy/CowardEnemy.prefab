@@ -803,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c44f2486bb9ae949b6c98a78d6e14b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeScaleRange: {x: 1.5, y: 3}
   moveForce: 5
   actionCooldown: 3
 --- !u!114 &7825989149346517407
@@ -817,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f308e2f6ac6eef3438117164e0b77e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  baseMaxHP: 20
 --- !u!50 &4151176264772008626
 Rigidbody2D:
   serializedVersion: 4

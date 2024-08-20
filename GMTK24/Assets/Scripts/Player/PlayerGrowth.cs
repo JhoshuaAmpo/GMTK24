@@ -25,5 +25,7 @@ public class PlayerGrowth : MonoBehaviour
         float sR = ScaleIncreaseRate * tp;
         transform.localScale += new Vector3(sR, sR, sR);
         virtualCamera.m_Lens.OrthographicSize += CameraOrthoSizeIncreaseRate * tp;
+        virtualCamera.m_Lens.OrthographicSize = Mathf.Min(virtualCamera.m_Lens.OrthographicSize, 500f);
+        transform.localScale = Vector3.Min(transform.localScale, new(100f, 100f, 100f));
     }
 }

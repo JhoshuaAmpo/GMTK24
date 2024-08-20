@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class PlayerTraitManager : MonoBehaviour
 
     [Tooltip("How many trait points we have / can spend")]
     public int TraitPoints {get; private set;}
+
+    [SerializeField]
+    GameEndManager gem;
 
     public List<PlayerTraitSlots> TraitSlots {get; private set;}
     public List<Trait> ActiveTraits {get; private set;}
@@ -61,6 +65,7 @@ public class PlayerTraitManager : MonoBehaviour
 
     public void GainTraitPoints(int tp) {
         TraitPoints += tp;
+        gem.UpdateBar(TraitPoints);
     }
 
     public void SwapTrait(int traitSlotIndex, GameObject trait) {

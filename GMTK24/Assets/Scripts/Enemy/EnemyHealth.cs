@@ -1,22 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField]
-    private float maxHP;
+    private float baseMaxHP;
     private float curHP;
+    private float calcMaxHP;
 
     ObjectPooler foodPool;
 
     private void Awake() {
         // need to change below to spawn food from a pool instead of it being dependent on the enemy
        foodPool = GameObject.FindWithTag("FoodPool").GetComponent<ObjectPooler>();
+       calcMaxHP = Mathf.Max(baseMaxHP * transform.localScale.x, baseMaxHP * 2);
+       curHP = calcMaxHP;
+    }
 
-        curHP = maxHP;
+    private void OnEnable() {
+        calcMaxHP = Mathf.Max(baseMaxHP * transform.localScale.x, baseMaxHP * 2);
+        curHP = calcMaxHP;
     }
 
     public void TakeDamage(float dmg) {
@@ -28,12 +31,12 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void ProcessDeath() {
-        // Spawn food
-        // hide this actor
         GameObject food = foodPool.GetPooledObject();
         if (food) {
             food.transform.position = transform.position;
-            food.GetComponent<Food>().SetTraitPoints(1);
+            float foodScaleMult = Random.Range(0.25f, 5f);
+            food.transform.localScale = transform.localScale * foodScaleMult;
+            food.GetComponent<Food>().SetTraitPoints((int)calcMaxHP/ 100);
             food.SetActive(true);
         }
         gameObject.SetActive(false);

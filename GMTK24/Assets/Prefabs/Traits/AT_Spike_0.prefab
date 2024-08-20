@@ -51,7 +51,7 @@ MonoBehaviour:
   tName: 3
   tCost: 10
   sizeMult: 2
-  damageVal: 10
+  damageVal: 5
   abilityCooldown: 10
 --- !u!212 &1027374162516367153
 SpriteRenderer:
