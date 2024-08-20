@@ -1147,6 +1147,7 @@ MonoBehaviour:
   traitButtons:
   - {fileID: 1649084207140084347}
   - {fileID: 2143720423}
+  totalCostText: {fileID: 1080644142}
   playerTraitManager: {fileID: 1859192599}
 --- !u!1 &395118652
 GameObject:
@@ -1374,7 +1375,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 3947015921396051319, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (1)
@@ -3500,7 +3501,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 3947015921396051319, guid: 7eae89b3d932a7244b1fde99ce877ddb, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (4)
@@ -4937,7 +4938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1244375740
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6006,9 +6007,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1987340780779080845, guid: d236465bd46576a42a9586867d5211d3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987340780779080845, guid: d236465bd46576a42a9586867d5211d3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987340780779080845, guid: d236465bd46576a42a9586867d5211d3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.22745098
+      objectReference: {fileID: 0}
     - target: {fileID: 2520037164465645727, guid: d236465bd46576a42a9586867d5211d3, type: 3}
       propertyPath: m_Name
       value: TraitButton (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486555047380467659, guid: d236465bd46576a42a9586867d5211d3, type: 3}
+      propertyPath: m_text
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761126441583252289, guid: d236465bd46576a42a9586867d5211d3, type: 3}
+      propertyPath: m_text
+      value: Spikiest Spike
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -6072,7 +6093,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 3947015921396051319, guid: 7eae89b3d932a7244b1fde99ce877ddb, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (2)
@@ -6143,7 +6164,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 3947015921396051319, guid: b88ff3f19f5d90e478d2c7b9e83b026b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (5)
@@ -7973,14 +7994,6 @@ PrefabInstance:
     - target: {fileID: 2520037164465645727, guid: d236465bd46576a42a9586867d5211d3, type: 3}
       propertyPath: m_Name
       value: TraitButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689368859554312326, guid: d236465bd46576a42a9586867d5211d3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7247034765128823178, guid: d236465bd46576a42a9586867d5211d3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

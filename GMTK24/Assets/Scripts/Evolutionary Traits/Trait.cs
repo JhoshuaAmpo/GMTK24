@@ -12,6 +12,8 @@ public abstract class Trait : MonoBehaviour
     public TraitTier tTier = TraitTier.none;
     public TraitName tName = TraitName.none;
 
+    public int tCost = 1;
+
     protected virtual void Awake() { 
         CheckTraitCodeForNone();
     }

@@ -7,7 +7,7 @@ public class PlayerTraitManager : MonoBehaviour
     [SerializeField]
     List<GameObject> allTraitObjects;
 
-    public int TraitPoints {get; private set;}
+    public int TraitPoints {get; private set;} = 2;
 
     PlayerTraitSlots[] traitSlots;
     public List<Trait> ActiveTraits {get; private set;}
@@ -61,6 +61,14 @@ public class PlayerTraitManager : MonoBehaviour
 
     public void SwapTrait(int traitSlotIndex, GameObject trait) {
         traitSlots[traitSlotIndex].SwapTrait(trait);
+    }
+
+    public int GetTotalTraitCost() {
+        int total = 0;
+        foreach (Trait trait in ActiveTraits) {
+            total += trait.tCost;
+        }
+        return total;
     }
 
     public void ActivateEveryAttack() {

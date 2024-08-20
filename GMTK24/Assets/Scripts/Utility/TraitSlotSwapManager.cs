@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,11 @@ public class TraitSlotSwapManager : MonoBehaviour
 
     [SerializeField]
     private List<Button> traitButtons;
+
+    [Header("Trait Cost Section")]
+    [SerializeField]
+    TextMeshProUGUI totalCostText;
+    private int totalTraitCost = 0;
 
     [Space]
     [SerializeField]
@@ -44,6 +50,11 @@ public class TraitSlotSwapManager : MonoBehaviour
         }
     }
 
+    private void Start() {
+        UpdateTotalCostText();
+        
+    }
+
     private void AbortTraitSwap() {
         SlotButtonsInteractable(true);
     }
@@ -58,7 +69,12 @@ public class TraitSlotSwapManager : MonoBehaviour
     private void SwapTrait(Button b) {
         // TraitButtonsInteractable(true);
         // b.interactable = false;
-        GameObject traitGO = b.GetComponentInChildren<Trait>().gameObject;
+        Trait trait = b.GetComponentInChildren<Trait>();
+        if (trait.tCost + playerTraitManager.TraitPoints > playerTraitManager.GetTotalTraitCost()) {
+            Debug.Log("Can't afford this!");
+            return;
+        }
+        GameObject traitGO = trait.gameObject;
         int traitSlotIndex = slotButtons.IndexOf(currentSlotButton); 
         if (traitSlotIndex == -1) {
             Debug.LogWarning("Can't find " + currentSlotButton + " in slotButtons");
@@ -69,6 +85,7 @@ public class TraitSlotSwapManager : MonoBehaviour
         Image newImg = b.transform.Find("Trait Image").GetComponent<Image>();
         currentSlotButton.image.sprite = newImg.sprite;
         currentSlotButton.image.color = newImg.color;
+        UpdateTotalCostText();
     }
 
     private void TraitButtonsInteractable(bool b) {
@@ -81,5 +98,9 @@ public class TraitSlotSwapManager : MonoBehaviour
         foreach (var sB in slotButtons) {
             sB.interactable = b;
         }
+    }
+
+    private void UpdateTotalCostText() {
+        totalCostText.text = playerTraitManager.TraitPoints + " / " + playerTraitManager.GetTotalTraitCost();
     }
 }

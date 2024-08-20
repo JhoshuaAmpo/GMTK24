@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1653706744681392443}
   - component: {fileID: 2465908557556099852}
   - component: {fileID: 3092544901103351396}
+  - component: {fileID: 5742589171485575318}
   - component: {fileID: 4412412097760769932}
   m_Layer: 5
   m_Name: TraitButton
@@ -81,6 +82,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5742589171485575318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2520037164465645727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37e2bee2e2ccdc4495609927a59aaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4412412097760769932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1027374162516367153, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3313893991530223314, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -601,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5729100280769828413, guid: 8c1f0b675ef67a74585b66a11cc4b0df, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
