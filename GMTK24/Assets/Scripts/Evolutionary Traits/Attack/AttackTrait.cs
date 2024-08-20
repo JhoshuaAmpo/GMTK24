@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class AttackTrait : Trait
@@ -14,11 +15,26 @@ public abstract class AttackTrait : Trait
     [SerializeField]
     [Tooltip("In seconds")]
     protected float abilityCooldown;
+    protected float abilityTimer = 0;
 
     protected override void Awake() {
         base.Awake();
         tType = Trait.TraitType.attack;
+        abilityTimer = 0;
     }
 
-    protected abstract void ActivateAttack();
+    protected override void Update()
+    {
+        base.Update();
+        if (abilityTimer > 0f) {
+            abilityTimer -= Time.deltaTime;
+            abilityTimer = Mathf.Clamp(abilityTimer, 0f, abilityCooldown);
+        }
+    }
+
+    protected void ResetTimer() {
+        abilityTimer = abilityCooldown;
+    }
+
+    public abstract void ActivateAttack();
 }

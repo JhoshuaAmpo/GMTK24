@@ -7,8 +7,11 @@ public class TraitSlotSwapManager : MonoBehaviour
 {
     public static TraitSlotSwapManager Instance {get; private set;}
 
+    [Header("Amoeba Buttons")]
     [SerializeField]
     private List<Button> slotButtons;
+
+    [Header("Trait Menu Buttons")]
     [SerializeField]
     private Button cancelButton;
     [SerializeField]
@@ -16,6 +19,8 @@ public class TraitSlotSwapManager : MonoBehaviour
 
     [SerializeField]
     private List<Button> traitButtons;
+
+    [Space]
     [SerializeField]
     private PlayerTraitManager playerTraitManager;
 
@@ -28,6 +33,7 @@ public class TraitSlotSwapManager : MonoBehaviour
             Destroy(this);
         }
         cancelButton.onClick.AddListener(AbortTraitSwap);
+        confirmButton.onClick.AddListener(delegate{SlotButtonsInteractable(true);});
         foreach (var b in slotButtons)
         {
             b.onClick.AddListener(delegate{TraitSlotButtonClicked(b);});
@@ -39,16 +45,19 @@ public class TraitSlotSwapManager : MonoBehaviour
     }
 
     private void AbortTraitSwap() {
-        currentSlotButton.interactable = true;
+        SlotButtonsInteractable(true);
     }
     private void TraitSlotButtonClicked(Button b) {
         currentSlotButton = b;
-        currentSlotButton.interactable = false;
+        foreach (var sB in slotButtons)
+        {
+            sB.interactable = false; 
+        }
     }
 
     private void SwapTrait(Button b) {
-        MakeAllTraitsInteractable();
-        b.interactable = false;
+        // TraitButtonsInteractable(true);
+        // b.interactable = false;
         GameObject traitGO = b.GetComponentInChildren<Trait>().gameObject;
         int traitSlotIndex = slotButtons.IndexOf(currentSlotButton); 
         if (traitSlotIndex == -1) {
@@ -57,12 +66,20 @@ public class TraitSlotSwapManager : MonoBehaviour
         }
         playerTraitManager.SwapTrait(traitSlotIndex, traitGO);
 
-        // currentSlotButton.image.sprite = b.transform.Find("Trait Image").GetComponent<Image>().sprite;
+        Image newImg = b.transform.Find("Trait Image").GetComponent<Image>();
+        currentSlotButton.image.sprite = newImg.sprite;
+        currentSlotButton.image.color = newImg.color;
     }
 
-    private void MakeAllTraitsInteractable() {
+    private void TraitButtonsInteractable(bool b) {
         foreach (var trait in traitButtons) {
-            trait.interactable = true;
+            trait.interactable = b;
+        }
+    }
+
+    private void SlotButtonsInteractable(bool b) {
+        foreach (var sB in slotButtons) {
+            sB.interactable = b;
         }
     }
 }

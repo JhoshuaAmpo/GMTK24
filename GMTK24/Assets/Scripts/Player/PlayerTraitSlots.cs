@@ -23,9 +23,9 @@ public class PlayerTraitSlots : MonoBehaviour
             Debug.LogError(NewTrait.name + " is not in the list of allTraits");
         } else {
             if (currentTraitObject) {
-                currentTraitObject.SetActive(false);
+                // currentTraitObject.SetActive(false);
+                FindTraitInList(currentTraitObject).SetActive(false);
             }
-            FindTraitInList(currentTraitObject).SetActive(false);
             foundObj.SetActive(true);
             currentTraitObject = foundObj;
         }

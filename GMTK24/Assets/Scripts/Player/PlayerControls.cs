@@ -148,7 +148,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""6b394ccb-57fb-472a-8467-2d1f5e48c57f"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""OpenEvolutionMenu"",
                     ""type"": ""Button"",
                     ""id"": ""51481df8-b5db-44d6-94e1-a2b0da0f197d"",
                     ""expectedControlType"": ""Button"",
@@ -165,7 +165,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""OpenEvolutionMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -183,7 +183,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Abilities_ActivateAbility = m_Abilities.FindAction("ActivateAbility", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
+        m_Menu_OpenEvolutionMenu = m_Menu.FindAction("OpenEvolutionMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,12 +345,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-    private readonly InputAction m_Menu_Newaction;
+    private readonly InputAction m_Menu_OpenEvolutionMenu;
     public struct MenuActions
     {
         private @PlayerControls m_Wrapper;
         public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
+        public InputAction @OpenEvolutionMenu => m_Wrapper.m_Menu_OpenEvolutionMenu;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,16 +360,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @OpenEvolutionMenu.started += instance.OnOpenEvolutionMenu;
+            @OpenEvolutionMenu.performed += instance.OnOpenEvolutionMenu;
+            @OpenEvolutionMenu.canceled += instance.OnOpenEvolutionMenu;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @OpenEvolutionMenu.started -= instance.OnOpenEvolutionMenu;
+            @OpenEvolutionMenu.performed -= instance.OnOpenEvolutionMenu;
+            @OpenEvolutionMenu.canceled -= instance.OnOpenEvolutionMenu;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -398,6 +398,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnOpenEvolutionMenu(InputAction.CallbackContext context);
     }
 }

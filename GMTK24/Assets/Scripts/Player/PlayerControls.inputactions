@@ -126,7 +126,7 @@
             "id": "6b394ccb-57fb-472a-8467-2d1f5e48c57f",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "OpenEvolutionMenu",
                     "type": "Button",
                     "id": "51481df8-b5db-44d6-94e1-a2b0da0f197d",
                     "expectedControlType": "Button",
@@ -143,7 +143,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "OpenEvolutionMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

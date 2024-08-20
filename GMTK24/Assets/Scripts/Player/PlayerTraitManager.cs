@@ -55,20 +55,18 @@ public class PlayerTraitManager : MonoBehaviour
         }
     }
 
-    void Start() { 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GainTraitPoints(int tp) {
         TraitPoints += tp;
     }
 
     public void SwapTrait(int traitSlotIndex, GameObject trait) {
         traitSlots[traitSlotIndex].SwapTrait(trait);
+    }
+
+    public void ActivateEveryAttack() {
+        foreach (var aT in AttackTraits)
+        {
+            aT.ActivateAttack();
+        }
     }
 }
