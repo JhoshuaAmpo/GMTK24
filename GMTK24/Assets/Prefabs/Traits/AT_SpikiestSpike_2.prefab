@@ -49,7 +49,7 @@ MonoBehaviour:
   tType: 1
   tTier: 3
   tName: 3
-  tCost: 30
+  tCost: 99
   sizeMult: 5
   damageVal: 20
   abilityCooldown: 5

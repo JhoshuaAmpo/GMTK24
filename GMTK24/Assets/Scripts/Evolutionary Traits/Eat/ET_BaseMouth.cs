@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ET_BaseMouth : EatTrait
 {
-    CapsuleCollider2D col;
+    CircleCollider2D col;
     protected override void Awake() {
         base.Awake();
-        col = GetComponent<CapsuleCollider2D>();
-        mouthSize = col.size.x * col.size.y;
+        col = GetComponent<CircleCollider2D>();
+        mouthSize = col.radius * 2 * col.radius * 2;
     }
 }

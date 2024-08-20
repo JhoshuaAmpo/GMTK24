@@ -100,7 +100,7 @@ MonoBehaviour:
   tType: 2
   tTier: 1
   tName: 1
-  tCost: 1
+  tCost: 5
   moveForceMult: 1.1
   turnRotationMult: 1.05
   dragMult: 1.05
