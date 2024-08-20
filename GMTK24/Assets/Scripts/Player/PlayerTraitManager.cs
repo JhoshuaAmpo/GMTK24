@@ -24,7 +24,7 @@ public class PlayerTraitManager : MonoBehaviour
     
     void Awake()
     {
-        TraitPoints = 200;
+        // TraitPoints = 200;
 
         ActiveTraits = new();
         AttackTraits = new();
@@ -32,30 +32,30 @@ public class PlayerTraitManager : MonoBehaviour
         EatTraits = new();
         TraitSlots = new();
 
-        GetComponentsInChildren<PlayerTraitSlots>(TraitSlots);
+        // GetComponentsInChildren<PlayerTraitSlots>(TraitSlots);
+        // // foreach (PlayerTraitSlots ts in TraitSlots)
+        // // {
+        // //     foreach (GameObject t in allTraitObjects)
+        // //     {
+        // //         ts.SpawnTrait(t);
+        // //     }
+        // // }
+
+        // TraitSlots[0].SpawnTrait(allTraitObjects[3]);
+        // TraitSlots[3].SpawnTrait(allTraitObjects[4]);
+        // TraitSlots[1].SpawnTrait(allTraitObjects[0]);
+        // TraitSlots[2].SpawnTrait(allTraitObjects[0]);
+        // TraitSlots[4].SpawnTrait(allTraitObjects[0]);
+        // TraitSlots[5].SpawnTrait(allTraitObjects[0]);
+
         // foreach (PlayerTraitSlots ts in TraitSlots)
         // {
-        //     foreach (GameObject t in allTraitObjects)
-        //     {
-        //         ts.SpawnTrait(t);
-        //     }
+        //     ts.transform.GetChild(0).gameObject.SetActive(true);
         // }
 
-        TraitSlots[0].SpawnTrait(allTraitObjects[3]);
-        TraitSlots[3].SpawnTrait(allTraitObjects[4]);
-        TraitSlots[1].SpawnTrait(allTraitObjects[0]);
-        TraitSlots[2].SpawnTrait(allTraitObjects[0]);
-        TraitSlots[4].SpawnTrait(allTraitObjects[0]);
-        TraitSlots[5].SpawnTrait(allTraitObjects[0]);
 
-        foreach (PlayerTraitSlots ts in TraitSlots)
-        {
-            ts.transform.GetChild(0).gameObject.SetActive(true);
-        }
-
-
-        playerMovement = transform.root.GetComponent<PlayerMovement>();
-        UpdateTraitLists();
+        // playerMovement = transform.root.GetComponent<PlayerMovement>();
+        // UpdateTraitLists();
     }
 
     private void UpdateTraitLists()

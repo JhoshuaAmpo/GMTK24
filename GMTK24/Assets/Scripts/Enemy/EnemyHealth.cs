@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float dmg) {
         curHP -= dmg;
-        Debug.Log(name + " HP: " + curHP);
+        // Debug.Log(name + " HP: " + curHP);
         if (curHP <= 0) {
             ProcessDeath();
         }

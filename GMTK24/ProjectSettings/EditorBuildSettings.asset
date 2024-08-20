@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/MainMenu.unity
     guid: 96c4cf665e283724f99e0833b45bdb1a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FinalScenes/Level1.unity
     guid: 2c11dab8424a54b4c906dbe24044656a
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Level1 Backup.unity
+    guid: 4f3c43b23335cce4997530b67f8a30e2
   m_configObjects: {}
