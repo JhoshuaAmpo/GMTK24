@@ -7,9 +7,10 @@ public class PlayerTraitManager : MonoBehaviour
     [SerializeField]
     List<GameObject> allTraitObjects;
 
-    public int TraitPoints {get; private set;} = 2;
+    [Tooltip("How many trait points we have / can spend")]
+    public int TraitPoints {get; private set;}
 
-    PlayerTraitSlots[] traitSlots;
+    public List<PlayerTraitSlots> TraitSlots {get; private set;}
     public List<Trait> ActiveTraits {get; private set;}
     public List<AttackTrait> AttackTraits {get; private set;}
     public List<MovementTrait> MovementTraits {get; private set;}
@@ -22,9 +23,12 @@ public class PlayerTraitManager : MonoBehaviour
         AttackTraits= new();
         MovementTraits= new();
         EatTraits= new();
+        TraitSlots = new();
 
-        traitSlots = GetComponentsInChildren<PlayerTraitSlots>();
-        foreach (PlayerTraitSlots ts in traitSlots)
+        TraitPoints = 100;
+
+        GetComponentsInChildren<PlayerTraitSlots>(TraitSlots);
+        foreach (PlayerTraitSlots ts in TraitSlots)
         {
             foreach (GameObject t in allTraitObjects)
             {
@@ -32,7 +36,7 @@ public class PlayerTraitManager : MonoBehaviour
             }
         }
 
-        foreach (PlayerTraitSlots ts in traitSlots)
+        foreach (PlayerTraitSlots ts in TraitSlots)
         {
             Trait trait = ts.GetCurrentTrait();
             if(trait != null) {
@@ -60,7 +64,7 @@ public class PlayerTraitManager : MonoBehaviour
     }
 
     public void SwapTrait(int traitSlotIndex, GameObject trait) {
-        traitSlots[traitSlotIndex].SwapTrait(trait);
+        TraitSlots[traitSlotIndex].SwapTrait(trait);
     }
 
     public int GetTotalTraitCost() {

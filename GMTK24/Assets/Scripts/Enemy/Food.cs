@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
 {
     private int traitPoints = 1;
     public int ConsumeFood() {
-        Debug.Log("Food has been consumed");
+        // Debug.Log("Food has been consumed");
         gameObject.SetActive(false);
         return traitPoints;
     }

@@ -28,7 +28,7 @@ public abstract class EatTrait : Trait
 
     private void OnTriggerStay2D(Collider2D other) {
         if (!other.CompareTag("Food")) { return; }
-        Debug.Log("Nomming on some food!");
+        // Debug.Log("Nomming on some food!");
         float otherApproxAreaSize = other.transform.lossyScale.x * other.transform.lossyScale.y;
         if(otherApproxAreaSize > mouthSize) {
             Vector3 oLS = other.transform.localScale;
@@ -39,7 +39,7 @@ public abstract class EatTrait : Trait
     }
 
     protected void Consume(int tp) {
-        Debug.Log("Sending message up");
+        // Debug.Log("Sending message up");
         SendMessageUpwards("GainTraitPoints", tp);
     }
 }

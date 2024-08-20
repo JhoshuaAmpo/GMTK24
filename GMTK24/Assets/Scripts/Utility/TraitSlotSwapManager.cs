@@ -16,7 +16,7 @@ public class TraitSlotSwapManager : MonoBehaviour
     [SerializeField]
     private Button cancelButton;
     [SerializeField]
-    private Button confirmButton;
+    private List<Button> confirmButtons;
 
     [SerializeField]
     private List<Button> traitButtons;
@@ -24,11 +24,12 @@ public class TraitSlotSwapManager : MonoBehaviour
     [Header("Trait Cost Section")]
     [SerializeField]
     TextMeshProUGUI totalCostText;
-    private int totalTraitCost = 0;
 
     [Space]
     [SerializeField]
     private PlayerTraitManager playerTraitManager;
+
+    private List<float> slotButtonsOriginalZRotation; 
 
     private Button currentSlotButton;
     
@@ -38,8 +39,12 @@ public class TraitSlotSwapManager : MonoBehaviour
             Debug.LogWarning("Multiple instnaces of " + Instance + " detected!");
             Destroy(this);
         }
+
         cancelButton.onClick.AddListener(AbortTraitSwap);
-        confirmButton.onClick.AddListener(delegate{SlotButtonsInteractable(true);});
+        foreach (var b in confirmButtons)
+        {
+            b.onClick.AddListener(delegate{SlotButtonsInteractable(true);});
+        }
         foreach (var b in slotButtons)
         {
             b.onClick.AddListener(delegate{TraitSlotButtonClicked(b);});
@@ -48,11 +53,16 @@ public class TraitSlotSwapManager : MonoBehaviour
         {
             b.onClick.AddListener(delegate{SwapTrait(b);});
         }
+
+        slotButtonsOriginalZRotation = new();
+        foreach (var b in slotButtons)
+        {
+            slotButtonsOriginalZRotation.Add(b.image.rectTransform.rotation.eulerAngles.z);
+        }
     }
 
     private void Start() {
         UpdateTotalCostText();
-        
     }
 
     private void AbortTraitSwap() {
@@ -69,22 +79,31 @@ public class TraitSlotSwapManager : MonoBehaviour
     private void SwapTrait(Button b) {
         // TraitButtonsInteractable(true);
         // b.interactable = false;
-        Trait trait = b.GetComponentInChildren<Trait>();
-        if (trait.tCost + playerTraitManager.TraitPoints > playerTraitManager.GetTotalTraitCost()) {
-            Debug.Log("Can't afford this!");
-            return;
-        }
-        GameObject traitGO = trait.gameObject;
         int traitSlotIndex = slotButtons.IndexOf(currentSlotButton); 
         if (traitSlotIndex == -1) {
             Debug.LogWarning("Can't find " + currentSlotButton + " in slotButtons");
             return;
         }
-        playerTraitManager.SwapTrait(traitSlotIndex, traitGO);
+        
+        // Check if player can afford trait
+        Trait trait = b.GetComponentInChildren<Trait>();
+        int thisTraitSlotCost = 0;
+        if (playerTraitManager.TraitSlots[traitSlotIndex].GetComponent<Trait>() != null) {
+            thisTraitSlotCost = playerTraitManager.TraitSlots[traitSlotIndex].GetComponent<Trait>().tCost;
+        }
+        if (trait.tCost + playerTraitManager.GetTotalTraitCost() - thisTraitSlotCost >= playerTraitManager.TraitPoints) {
+            Debug.Log("Can't afford this!");
+            return;
+        }
 
+        // Does the actual trait swapping
+        GameObject traitGO = trait.gameObject;
+        playerTraitManager.SwapTrait(traitSlotIndex, traitGO);
         Image newImg = b.transform.Find("Trait Image").GetComponent<Image>();
         currentSlotButton.image.sprite = newImg.sprite;
         currentSlotButton.image.color = newImg.color;
+        // Debug.Log(newImg.rectTransform.rotation.eulerAngles.z);
+        currentSlotButton.image.rectTransform.localRotation = Quaternion.Euler(0, 0, slotButtonsOriginalZRotation[slotButtons.IndexOf(currentSlotButton)] + newImg.rectTransform.rotation.eulerAngles.z);
         UpdateTotalCostText();
     }
 
@@ -101,6 +120,6 @@ public class TraitSlotSwapManager : MonoBehaviour
     }
 
     private void UpdateTotalCostText() {
-        totalCostText.text = playerTraitManager.TraitPoints + " / " + playerTraitManager.GetTotalTraitCost();
+        totalCostText.text = playerTraitManager.GetTotalTraitCost() + " / " + playerTraitManager.TraitPoints;
     }
 }
