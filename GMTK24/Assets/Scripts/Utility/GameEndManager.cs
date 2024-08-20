@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +13,21 @@ public class GameEndManager : MonoBehaviour
     [SerializeField]
     private int goalTP = 2000;
 
-    private void Awake() {
+    [SerializeField]
+    private GameObject finalCutscene;
 
+    TextMeshProUGUI text;
+
+    private void Awake() {
+        text = scrollbar.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "Goal: Get to " + goalTP;
+        finalCutscene.SetActive(false);
     }
 
     public void UpdateBar(int totalTP) {
-        scrollbar.size = totalTP / goalTP;
+        scrollbar.size = totalTP / (float)goalTP;
         if (totalTP >= goalTP) {
-            Debug.Log("You win!");
+            finalCutscene.SetActive(true);
         }
     }
 }

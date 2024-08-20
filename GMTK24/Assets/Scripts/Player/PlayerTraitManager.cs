@@ -64,6 +64,7 @@ public class PlayerTraitManager : MonoBehaviour
     }
 
     public void GainTraitPoints(int tp) {
+        Debug.Log("TP gained!");
         TraitPoints += tp;
         gem.UpdateBar(TraitPoints);
     }
