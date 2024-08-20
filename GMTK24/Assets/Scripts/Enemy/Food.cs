@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Food : MonoBehaviour
 {
+    [SerializeField]
     private int traitPoints = 1;
     public int ConsumeFood() {
         // Debug.Log("Food has been consumed");
