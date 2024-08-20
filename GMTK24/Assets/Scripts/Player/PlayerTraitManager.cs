@@ -19,58 +19,84 @@ public class PlayerTraitManager : MonoBehaviour
     public List<AttackTrait> AttackTraits {get; private set;}
     public List<MovementTrait> MovementTraits {get; private set;}
     public List<EatTrait> EatTraits {get; private set;}
+
+    PlayerMovement playerMovement;
     
-    // Start is called before the first frame update
     void Awake()
     {
+        TraitPoints = 200;
+
         ActiveTraits = new();
-        AttackTraits= new();
-        MovementTraits= new();
-        EatTraits= new();
+        AttackTraits = new();
+        MovementTraits = new();
+        EatTraits = new();
         TraitSlots = new();
 
-        TraitPoints = 100;
-
         GetComponentsInChildren<PlayerTraitSlots>(TraitSlots);
+        // foreach (PlayerTraitSlots ts in TraitSlots)
+        // {
+        //     foreach (GameObject t in allTraitObjects)
+        //     {
+        //         ts.SpawnTrait(t);
+        //     }
+        // }
+
+        TraitSlots[0].SpawnTrait(allTraitObjects[3]);
+        TraitSlots[3].SpawnTrait(allTraitObjects[4]);
+        TraitSlots[1].SpawnTrait(allTraitObjects[0]);
+        TraitSlots[2].SpawnTrait(allTraitObjects[0]);
+        TraitSlots[4].SpawnTrait(allTraitObjects[0]);
+        TraitSlots[5].SpawnTrait(allTraitObjects[0]);
+
         foreach (PlayerTraitSlots ts in TraitSlots)
         {
-            foreach (GameObject t in allTraitObjects)
-            {
-                ts.SpawnTrait(t);
-            }
+            ts.transform.GetChild(0).gameObject.SetActive(true);
         }
 
+
+        playerMovement = transform.root.GetComponent<PlayerMovement>();
+        UpdateTraitLists();
+    }
+
+    private void UpdateTraitLists()
+    {
         foreach (PlayerTraitSlots ts in TraitSlots)
         {
             Trait trait = ts.GetCurrentTrait();
-            if(trait != null) {
+            if (trait != null)
+            {
                 ActiveTraits.Add(trait);
                 ts.EnableCurrentTrait();
-            }         
+            }
         }
 
         foreach (Trait t in ActiveTraits)
         {
-            if (t is AttackTrait) {
+            if (t is AttackTrait)
+            {
                 AttackTraits.Add(t as AttackTrait);
             }
-            if (t is MovementTrait) {
+            if (t is MovementTrait)
+            {
                 MovementTraits.Add(t as MovementTrait);
             }
-            if (t is EatTrait) {
+            if (t is EatTrait)
+            {
                 EatTraits.Add(t as EatTrait);
             }
         }
     }
 
     public void GainTraitPoints(int tp) {
-        Debug.Log("TP gained!");
+        // Debug.Log("TP gained!");
         TraitPoints += tp;
         gem.UpdateBar(TraitPoints);
     }
 
     public void SwapTrait(int traitSlotIndex, GameObject trait) {
         TraitSlots[traitSlotIndex].SwapTrait(trait);
+        playerMovement.UpdateTraitValues();
+        UpdateTraitLists();
     }
 
     public int GetTotalTraitCost() {

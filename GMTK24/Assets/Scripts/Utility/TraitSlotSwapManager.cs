@@ -84,7 +84,6 @@ public class TraitSlotSwapManager : MonoBehaviour
             Debug.LogWarning("Can't find " + currentSlotButton + " in slotButtons");
             return;
         }
-        
         // Check if player can afford trait
         Trait trait = b.GetComponentInChildren<Trait>();
         int thisTraitSlotCost = 0;
@@ -92,12 +91,17 @@ public class TraitSlotSwapManager : MonoBehaviour
             thisTraitSlotCost = playerTraitManager.TraitSlots[traitSlotIndex].GetComponent<Trait>().tCost;
         }
         if (trait.tCost + playerTraitManager.GetTotalTraitCost() - thisTraitSlotCost >= playerTraitManager.TraitPoints) {
-            Debug.Log("Can't afford this!");
+            // Debug.Log("Can't afford this!");
             return;
         }
+        // Check for clicking the same button again
+        // if (playerTraitManager.TraitSlots[traitSlotIndex].GetCurrentTrait() == trait) {
+        //     return;
+        // }
 
         // Does the actual trait swapping
         GameObject traitGO = trait.gameObject;
+
         playerTraitManager.SwapTrait(traitSlotIndex, traitGO);
         Image newImg = b.transform.Find("Trait Image").GetComponent<Image>();
         currentSlotButton.image.sprite = newImg.sprite;
@@ -119,7 +123,7 @@ public class TraitSlotSwapManager : MonoBehaviour
         }
     }
 
-    private void UpdateTotalCostText() {
+    public void UpdateTotalCostText() {
         totalCostText.text = playerTraitManager.GetTotalTraitCost() + " / " + playerTraitManager.TraitPoints;
     }
 }

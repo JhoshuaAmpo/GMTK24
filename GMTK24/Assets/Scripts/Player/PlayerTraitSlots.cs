@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerTraitSlots : MonoBehaviour
 {
-    public GameObject currentTraitObject;
+    [SerializeField]
+    private GameObject currentTraitObject;
     List<GameObject> allTraits;
 
     private void Awake() {

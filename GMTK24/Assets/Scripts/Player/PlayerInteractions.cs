@@ -8,6 +8,8 @@ public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField]
     GameObject EvoMenu;
+    [SerializeField]
+    TraitSlotSwapManager traitSlotSwapManager;
     PlayerTraitManager ptm;
     PlayerControls pc;
 
@@ -34,12 +36,13 @@ public class PlayerInteractions : MonoBehaviour
     {
         if (!EvoMenu.activeInHierarchy) {
             EvoMenu.SetActive(true);
+            traitSlotSwapManager.UpdateTotalCostText();
         }
     }
 
     private void ActivateAbilities(InputAction.CallbackContext context)
     {
         // Debug.Log(context);
-        ptm.ActivateEveryAttack();
+        // ptm.ActivateEveryAttack();
     }
 }

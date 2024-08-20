@@ -2053,7 +2053,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301557555}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df966a0bc409c6749b241718c0b05c0d, type: 3}
   m_Name: 
@@ -3868,7 +3868,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584313859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 572e2444dfea88b449f8cf93eac1511a, type: 3}
   m_Name: 
@@ -3921,7 +3921,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 6608591458263366766, guid: ec153b6b8e442ff4f9fc0dee0701db6a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot (3)
@@ -14784,7 +14784,7 @@ PrefabInstance:
     - target: {fileID: 1451718589410738216, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: currentTraitObject
       value: 
-      objectReference: {fileID: 908770791201335318, guid: 50afaee37a766f1408e0afa0589100ef, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5592894255608470259, guid: a80e41ad9f7d7ea4c99e3dafc571e442, type: 3}
       propertyPath: m_Name
       value: PlayerTraitSlot

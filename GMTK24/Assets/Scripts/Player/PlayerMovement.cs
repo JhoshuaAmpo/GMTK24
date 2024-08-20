@@ -75,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
     // Call this funciton after swapping traits
     public void UpdateTraitValues() {
         if (ptm.MovementTraits.Count == 0) {
-            combinedMoveForceMult = 0;
-            combinedTurnRotationMult = 0;
+            combinedMoveForceMult = 1;
+            combinedTurnRotationMult = 1;
             combinedDragMult = 1;
         } else {
             // Way 1 Average out mult

@@ -51,7 +51,7 @@ public class CowardEnemyBehvaior : MonoBehaviour
         moveForce += 1f;
         moveForce = Mathf.Clamp(moveForce, 3, 200);
 
-        actionCooldown -= 0.1f;
+        actionCooldown -= 0.2f;
         actionCooldown = Mathf.Clamp(actionCooldown, 1,10);
     }
 }

@@ -804,8 +804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeScaleRange: {x: 1.5, y: 3}
-  moveForce: 5
-  actionCooldown: 3
+  moveForce: 7
+  actionCooldown: 10
 --- !u!114 &7825989149346517407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

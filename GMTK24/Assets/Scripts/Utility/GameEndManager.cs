@@ -15,6 +15,8 @@ public class GameEndManager : MonoBehaviour
 
     [SerializeField]
     private GameObject finalCutscene;
+    [SerializeField]
+    private GameObject endCutsceneController;
 
     TextMeshProUGUI text;
 
@@ -22,12 +24,14 @@ public class GameEndManager : MonoBehaviour
         text = scrollbar.GetComponentInChildren<TextMeshProUGUI>();
         text.text = "Goal: Get to " + goalTP;
         finalCutscene.SetActive(false);
+        endCutsceneController.SetActive(false);
     }
 
     public void UpdateBar(int totalTP) {
         scrollbar.size = totalTP / (float)goalTP;
         if (totalTP >= goalTP) {
             finalCutscene.SetActive(true);
+            endCutsceneController.SetActive(true);
         }
     }
 }

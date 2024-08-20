@@ -10,9 +10,6 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField]
     private int maxObjectCount = 1;
 
-    [SerializeField]
-    private int initialAmountEnabled = 0;
-
     public List<GameObject> objectPool;
 
     private void Awake() {
